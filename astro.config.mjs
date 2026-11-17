@@ -4,5 +4,5 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   // 公開URL（OGP画像のURLに使う）。ドメインを変えたらここも変える
-  site: 'https://ironhour-flax.vercel.app',
+  site: 'https://ironhour-personal.vercel.app',
 });
