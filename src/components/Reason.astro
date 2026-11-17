@@ -1,0 +1,20 @@
+---
+import { reasons } from '../data/site';
+import SectionHeading from './SectionHeading.astro';
+import Photo from './Photo.astro';
+---
+<section class="container section reason__inner" aria-labelledby="reason-title">
+  <SectionHeading label="REASON" id="reason-title">IRONHOURが<br />続けられる3つの理由</SectionHeading>
+  <ol class="reason__list">
+    {reasons.map((r, i) => (
+      <li class="reason__item">
+        <span class="reason__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+        <div class="reason__text">
+          <h3 class="reason__title">{r.title}</h3>
+          <p class="reason__body">{r.body}</p>
+        </div>
+        <Photo label={r.photo} src={r.image} position={r.position} class="reason__photo" />
+      </li>
+    ))}
+  </ol>
+</section>

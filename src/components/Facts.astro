@@ -1,0 +1,15 @@
+---
+import { facts } from '../data/site';
+import Photo from './Photo.astro';
+---
+<section class="container facts" aria-label="プログラム概要">
+  <dl class="facts__list">
+    {facts.map((f) => (
+      <div class:list={['facts__item', { 'facts__item--accent': f.accent }]}>
+        <dt class="facts__term">{f.term}</dt>
+        <dd class="facts__value">{f.value}<small>{f.unit}</small></dd>
+      </div>
+    ))}
+  </dl>
+  <Photo label="ダンベルでトレーニングする男女" src="/images/facts-dumbbell.jpg" class="facts__photo" position="center 30%" />
+</section>

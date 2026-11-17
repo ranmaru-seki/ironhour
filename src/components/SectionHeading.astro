@@ -1,0 +1,12 @@
+---
+interface Props {
+  label: string;
+  tone?: 'light' | 'ink';
+  id?: string;
+}
+const { label, tone = 'light', id } = Astro.props;
+---
+<div class:list={['sec-head', { 'sec-head--ink': tone === 'ink' }]}>
+  <p class="sec-head__label">{label}</p>
+  <h2 class="sec-head__title" id={id}><slot /></h2>
+</div>

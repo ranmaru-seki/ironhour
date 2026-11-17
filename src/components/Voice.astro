@@ -1,0 +1,29 @@
+---
+import { voices } from '../data/site';
+import SectionHeading from './SectionHeading.astro';
+---
+<section class="container section voice__inner" aria-labelledby="voice-title">
+  <SectionHeading label="VOICE" id="voice-title">体験者の声</SectionHeading>
+  <div class="voice__list">
+    {voices.map((v) => (
+      <figure class="voice__card">
+        <div class="voice__photos">
+          <div class="voice__photo">
+            <span class="voice__photo-label">BEFORE</span>
+            <span class="voice__photo-ph">PHOTO</span>
+          </div>
+          <div class="voice__photo voice__photo--after">
+            <span class="voice__photo-label">AFTER</span>
+            <span class="voice__photo-ph">PHOTO</span>
+          </div>
+        </div>
+        <blockquote class="voice__quote">
+          <p class="voice__catch">{v.catch}</p>
+          <p class="voice__body">{v.body}</p>
+        </blockquote>
+        <figcaption class="voice__profile">{v.profile}</figcaption>
+      </figure>
+    ))}
+  </div>
+  <p class="voice__note">※ 架空のサンプルです。効果には個人差があります。</p>
+</section>

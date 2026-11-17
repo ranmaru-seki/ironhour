@@ -1,0 +1,69 @@
+---
+import { faqs } from '../data/site';
+import SectionHeading from './SectionHeading.astro';
+---
+<section class="container container--faq section faq__inner" id="faq" aria-labelledby="faq-title">
+  <SectionHeading label="FAQ" id="faq-title">よくある質問</SectionHeading>
+  <div class="faq__list">
+    {faqs.map((item, i) => (
+      <details class="faq__item" open={i === 0}>
+        <summary class="faq__q"><span class="faq__q-mark" aria-hidden="true">Q</span>{item.q}</summary>
+        <div class="faq__body">
+          <p class="faq__a">{item.a}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
+
+<script>
+  // <details> の開閉を高さ・透明度のアニメーションで滑らかにする
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const options: KeyframeAnimationOptions = {
+    // 前後対称のイージングにして、開くときと閉じるときの動きを揃える
+    duration: 500,
+    easing: 'cubic-bezier(0.65, 0, 0.35, 1)',
+  };
+
+  document.querySelectorAll<HTMLDetailsElement>('.faq__item').forEach((item) => {
+    const summary = item.querySelector<HTMLElement>('.faq__q');
+    const body = item.querySelector<HTMLElement>('.faq__body');
+    if (!summary || !body) return;
+
+    let animation: Animation | null = null;
+
+    summary.addEventListener('click', (event) => {
+      if (reduceMotion.matches) return;
+      event.preventDefault();
+
+      const closing = item.open && item.dataset.state !== 'closing';
+      // 途中で再クリックされても現在位置から続けられるよう、キャンセル前に計測
+      const fromHeight = `${body.getBoundingClientRect().height}px`;
+      const fromOpacity = item.open ? getComputedStyle(body).opacity : '0';
+      animation?.cancel();
+
+      if (closing) {
+        item.dataset.state = 'closing';
+        animation = body.animate(
+          { height: [fromHeight, '0px'], opacity: [fromOpacity, '0'] },
+          options,
+        );
+        animation.onfinish = () => {
+          item.open = false;
+          delete item.dataset.state;
+          animation = null;
+        };
+      } else {
+        delete item.dataset.state;
+        item.open = true;
+        animation = body.animate(
+          { height: [fromHeight, `${body.scrollHeight}px`], opacity: [fromOpacity, '1'] },
+          options,
+        );
+        animation.onfinish = () => {
+          animation = null;
+        };
+      }
+    });
+  });
+</script>

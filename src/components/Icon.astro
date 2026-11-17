@@ -1,0 +1,18 @@
+---
+// シンプルな線アイコン。色は親要素の文字色（currentColor）を引き継ぐ
+interface Props {
+  name: 'arrow' | 'cross';
+  size?: number;
+}
+const { name, size = name === 'cross' ? 24 : 20 } = Astro.props;
+---
+{name === 'arrow' && (
+  <svg width={size} height={size} viewBox="0 0 20 20" fill="none" aria-hidden="true">
+    <path d="M3 10h13M11 4.5 16.5 10 11 15.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" />
+  </svg>
+)}
+{name === 'cross' && (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" />
+  </svg>
+)}

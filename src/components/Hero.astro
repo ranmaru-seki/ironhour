@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+---
+<section class="hero" aria-labelledby="hero-title">
+  <picture class="hero__bg">
+    <source media="(max-width: 599px)" srcset="/images/hero-sp.jpg" />
+    <source media="(max-width: 1023px)" srcset="/images/hero-tablet.jpg" />
+    <img src="/images/hero-pc.jpg" alt="" width="1440" height="496" fetchpriority="high" />
+  </picture>
+  <div class="hero__fade"></div>
+  <div class="container hero__inner">
+    <p class="hero__mark" aria-label="8 WEEKS">
+      <span class="hero__num" aria-hidden="true">8</span>
+      <span class="hero__weeks" aria-hidden="true">WEEKS</span>
+    </p>
+    <div class="hero__body">
+      <h1 class="hero__title" id="hero-title">8週間、本気でやれば<br />体は応えてくれる。</h1>
+      <p class="hero__lead">仕事が忙しい30代のための、短期集中パーソナルトレーニング。やることは、決めた時間にジムへ来るだけ。</p>
+      <div class="hero__actions">
+        <a href="#trial" class="btn btn--accent btn--lg">無料体験を予約する<Icon name="arrow" /></a>
+        <span class="hero__note">体験は0円・60分</span>
+      </div>
+    </div>
+  </div>
+</section>

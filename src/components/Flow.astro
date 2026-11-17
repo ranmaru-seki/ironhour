@@ -1,0 +1,18 @@
+---
+import { flow } from '../data/site';
+import SectionHeading from './SectionHeading.astro';
+---
+<section class="section flow" id="flow" aria-labelledby="flow-title">
+  <div class="container container--wide flow__inner">
+    <SectionHeading label="8 WEEKS FLOW" tone="ink" id="flow-title">8週間の流れ</SectionHeading>
+    <ol class="flow__list">
+      {flow.map((f) => (
+        <li class="flow__item">
+          <span class="flow__week">{f.week}</span>
+          <h3 class="flow__title">{f.title}</h3>
+          <p class="flow__body">{f.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

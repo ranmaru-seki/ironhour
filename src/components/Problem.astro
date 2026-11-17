@@ -1,0 +1,19 @@
+---
+import { problems } from '../data/site';
+import SectionHeading from './SectionHeading.astro';
+import Icon from './Icon.astro';
+---
+<section class="section problem" aria-labelledby="problem-title">
+  <div class="container container--narrow problem__inner">
+    <SectionHeading label="PROBLEM" tone="ink" id="problem-title">こんな「つもり」、<br />続いていませんか？</SectionHeading>
+    <ul class="problem__list">
+      {problems.map((text) => (
+        <li class="problem__item"><Icon name="cross" />{text}</li>
+      ))}
+    </ul>
+    <div class="problem__answer">
+      <span class="problem__arrow" aria-hidden="true">→</span>
+      <p class="problem__answer-text">足りないのは、やる気じゃない。<br />「続く仕組み」です。</p>
+    </div>
+  </div>
+</section>

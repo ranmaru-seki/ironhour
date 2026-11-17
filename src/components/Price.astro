@@ -1,0 +1,24 @@
+---
+import { plans, priceNotes } from '../data/site';
+import SectionHeading from './SectionHeading.astro';
+---
+<section class="section price" id="price" aria-labelledby="price-title">
+  <div class="container container--narrow price__inner">
+    <SectionHeading label="PRICE" id="price-title">料金</SectionHeading>
+    <div class="price__plans">
+      {plans.map((p) => (
+        <div class:list={['plan', { 'plan--featured': p.badge }]}>
+          {p.badge && <span class="plan__badge">{p.badge}</span>}
+          <h3 class="plan__name">{p.name}</h3>
+          <p class="plan__price">{p.price}<small>（税込）</small></p>
+          <ul class="plan__features">
+            {p.features.map((f) => <li>{f}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <ul class="price__notes">
+      {priceNotes.map((n) => <li>{n}</li>)}
+    </ul>
+  </div>
+</section>

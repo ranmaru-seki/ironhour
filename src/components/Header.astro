@@ -1,0 +1,12 @@
+---
+import { nav } from '../data/site';
+---
+<header class="header">
+  <div class="container header__inner">
+    <a href="/" class="logo" aria-label="IRONHOUR トップへ">IRON<span>HOUR</span></a>
+    <nav class="nav" aria-label="メインメニュー">
+      {nav.map((item) => <a href={item.href} class="nav__link">{item.label}</a>)}
+      <a href="#trial" class="btn btn--accent btn--sm">無料体験</a>
+    </nav>
+  </div>
+</header>
